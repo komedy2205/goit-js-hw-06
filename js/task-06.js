@@ -1,18 +1,17 @@
-const inputVal = document.getElementById("validation-input");
 
-const totalLenght = inputVal.getAttribute("data-length");
-const intTotallenght = parseInt(totalLenght, 10);
+const inputEl = document.querySelector('input');
 
-inputVal.oninput = function() {
-  if (inputVal.value.length === intTotallenght) {
-    inputVal.classList.remove("invalid");
-    inputVal.classList.add("valid");
+inputEl.addEventListener('blur', onInputValidation);
+
+function onInputValidation(event) {
+  const valueLength = event.currentTarget.value.length;
+  const requiredLength = inputEl.dataset.length;
+
+  this.classList.add('invalid');
+  this.classList.remove('valid');
+
+  if (valueLength == requiredLength) {
+    this.classList.add('valid');
+    this.classList.remove('invalid');
   }
-  if (inputVal.value.length === 0) {
-    inputVal.classList.remove("valid");
-    inputVal.classList.remove("invalid");
-  }
-  if (inputVal.value.length !== intTotallenght && inputVal.value.length !== 0) {
-    inputVal.classList.add("invalid");
-  }
-};
+}
