@@ -13,22 +13,10 @@ const images = [
   },
 ];
 
-const galleryRef = document.querySelector('.gallery');
-const imgEl = document.createElement('img');
-const liEl = document.createElement('li');
-
-const createElements = element => {
-  const imgEl = document.createElement('img');
-  const liEl = document.createElement('li');
-  imgEl.textContent = element;
-  liEl.textContent = element;
-  liEl.appendChild(imgEl);
-  return imgEl, liEl;
-};
-
-const elementListRef = images.flatMap(image =>
-  createElements(image.url, image.alt),
-);
-
-
-galleryRef.append(...elementListRef);
+const list = document.querySelector('.gallery');
+const createimg = images.map(image =>
+  `<li> <img
+src="${image.url}"
+//alt="${image.alt}"/>
+//</li>`).join("")
+list.insertAdjacentHTML('afterbegin', createimg)
